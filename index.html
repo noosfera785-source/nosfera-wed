@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogos Shopify y Páginas Web Independientes</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <!-- Galería de fondo dinámica con fotos -->
+    <div class="BackgroundGallery" id="bgGallery">
+      <div class="bg-slide active" style="background-image: url('https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=1920&q=80')"></div>
+      <div class="bg-slide" style="background-image: url('https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1920&q=80')"></div>
+    </div>
+    <div class="Overlay-purple"></div>
+
+    <!-- Menú Superior -->
+    <div class="Menu">
+      <nav>
+        <a href="javascript:void(0)" onclick="cambiarVista('homeView', this)" class="nav-tab selected">Inicio</a>
+        <a href="javascript:void(0)" onclick="cambiarVista('catalogView', this)" class="nav-tab">Catálogos</a>
+        <a href="javascript:void(0)" onclick="cambiarVista('pagesView', this)" class="nav-tab">Nuestras Páginas</a>
+        <a href="javascript:void(0)" onclick="cambiarVista('infoView', this)" class="nav-tab">Información</a>
+        
+        <div class="UserNavArea">
+          <button type="button" id="openClientAuthBtn" class="ClientAuthNavBtn">Iniciar Sesión</button>
+          <div id="loggedUserBadge" class="LoggedUserBadge hidden">
+            <span id="loggedUserName">Usuario</span>
+            <button type="button" id="clientLogoutBtn" class="LogoutMiniBtn">Salir</button>
+          </div>
+          <!-- Acceso oculto del propietario (•) -->
+          <a href="javascript:void(0)" id="openAdminLogin" class="AdminSecretLink" title="Admin">•</a>
+          <button type="button" id="openAdminModal" class="AdminNavBtn hidden">⚙️ Panel Admin</button>
+        </div>
+      </nav>
+    </div>
+
+    <!-- VISTA 1: INICIO -->
+    <div id="homeView" class="ViewContainer">
+      <div class="Container">
+        <div class="Section">
+          <div class="Title">
+            <h1>Creamos tu catálogo Shopify</h1>
+            <h2>y páginas web independientes</h2>
+            <p class="Hero-desc">Precios variables según la cantidad de artículos y productos que necesites. Diseños rápidos, modernos y adaptables a celulares.</p>
+          </div>
+          <div class="HeroActions">
+            <button type="button" class="HeroPrimaryBtn" onclick="cambiarVista('catalogView')">Ver Catálogos</button>
+            <button type="button" class="HeroSecondaryBtn" onclick="cambiarVista('pagesView')">Ver Nuestras Páginas</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- VISTA 2: CATÁLOGOS SHOPIFY -->
+    <div id="catalogView" class="ViewContainer hidden">
+      <div class="Container">
+        <div class="Section ViewTopPadding">
+          <h3>Catálogos Web para Shopify</h3>
+          <p class="Section-subtitle">Elige tu modelo ideal (precio según cantidad de artículos):</p>
+          <div id="shopifyCatalogGrid" class="Catalog-grid"></div>
+
+          <!-- SECCIÓN DE VIDEOS -->
+          <div class="VideosSection">
+            <h3>Videos de Nuestros Trabajos</h3>
+            <div id="videosGrid" class="Videos-grid"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- VISTA 3: PÁGINAS INDEPENDIENTES -->
+    <div id="pagesView" class="ViewContainer hidden">
+      <div class="Container">
+        <div class="Section ViewTopPadding">
+          <h3>Nuestras Páginas Independientes</h3>
+          <p class="Section-subtitle">Sitios web a medida con presupuesto variable según el proyecto:</p>
+          <div id="pagesGrid" class="Catalog-grid"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- VISTA 4: INFORMACIÓN -->
+    <div id="infoView" class="ViewContainer hidden">
+      <div class="Container">
+        <div class="Section ViewTopPadding">
+          <h3>Información y Contacto</h3>
+          <p class="Section-subtitle">Conoce cómo trabajamos y contáctanos directamente:</p>
+          
+          <div class="ContactBox">
+            <button type="button" id="btnRevealContact" class="Contact-btn">Mostrar Contacto Directo</button>
+            <div id="contactDetails" class="Contact-details hidden">
+              <p>📧 <strong>Correo:</strong> <a id="displayContactEmail" href="mailto:sebastian178requena@gmail.com">sebastian178requena@gmail.com</a></p>
+              <p>📱 <strong>WhatsApp:</strong> <a id="displayContactPhone" href="https://wa.me/584000000000" target="_blank">+58 400 000 0000</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Botón Flotante WhatsApp -->
+    <a id="floatingWhatsappBtn" href="https://wa.me/584000000000" target="_blank" class="FloatingWhatsApp">💬 WhatsApp</a>
+
+    <div class="Footer">
+      <ul>
+        <li><span>© 2026 Catálogos Shopify & Web</span></li>
+        <li><span id="footerVisitCount">Visitas: 1</span></li>
+      </ul>
+    </div>
+
+    <!-- MODAL ACCESO PROPIETARIO (Contraseña: pley456) -->
+    <div id="ownerLoginModal" class="AdminModal hidden">
+      <div class="AdminContent">
+        <h3>Acceso Propietario</h3>
+        <form id="ownerAuthForm" class="AuthForm">
+          <input type="password" id="ownerPassInput" placeholder="Contraseña de administrador" required class="AdminInput">
+          <div class="AdminButtons">
+            <button type="submit" class="AdminBtnSave" style="flex:1;">Entrar</button>
+            <button type="button" id="closeOwnerLogin" class="AdminBtnClose">Cerrar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- PANEL DE ADMINISTRACIÓN -->
+    <div id="adminModal" class="AdminModal hidden">
+      <div class="AdminContent AdminLarge">
+        <div class="AdminHeader">
+          <h3>Panel de Administración</h3>
+          <button type="button" id="closeAdminModal" class="AdminBtnClose">✕</button>
+        </div>
+        <div class="AdminSectionBox">
+          <h4>Configuración de Contacto y Fondo</h4>
+          <input type="email" id="adminEmailInput" class="AdminInput" placeholder="Correo de contacto">
+          <input type="text" id="adminPhoneInput" class="AdminInput" placeholder="Teléfono / WhatsApp">
+          <input type="text" id="imgUrlInput" class="AdminInput" placeholder="URL nueva imagen de fondo">
+          <div style="display:flex; gap:8px;">
+            <button type="button" id="saveContactBtn" class="AdminBtnSave" style="flex:1;">Guardar Contacto</button>
+            <button type="button" id="saveBgBtn" class="AdminBtnSave" style="flex:1;">Actualizar Fondo</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Loader inicial -->
+    <div class="Loader">
+      <div class="Welcome-box">
+        <span class="Welcome-text">Bienvenido</span>
+        <div class="Loader-bar"></div>
+      </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>

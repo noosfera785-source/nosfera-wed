@@ -1,0 +1,247 @@
+:root {
+  --bg-top: #0F061D;
+  --bg-mid: #241042;
+  --bg-bottom: #47217A;
+  --text-color: #FFFFFF;
+  --muted-color: #C4B5FD;
+  --accent-grad: linear-gradient(90deg, #A855F7 0%, #EC4899 100%);
+  --solid-shape: rgba(168, 85, 247, 0.25);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: linear-gradient(180deg, var(--bg-top) 0%, var(--bg-mid) 50%, var(--bg-bottom) 100%);
+  background-attachment: fixed;
+  color: var(--text-color);
+  font-family: 'Montserrat', sans-serif;
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+.BackgroundGallery { position: fixed; inset: 0; z-index: -2; overflow: hidden; }
+.bg-slide {
+  position: absolute; inset: 0; background-size: cover; background-position: center; opacity: 0; transform: scale(1);
+  transition: opacity 2s ease-in-out, transform 10s linear;
+}
+.bg-slide.active { opacity: 0.55; transform: scale(1.08); }
+
+.Overlay-purple {
+  position: fixed; inset: 0;
+  background: linear-gradient(180deg, rgba(15, 6, 29, 0.55) 0%, rgba(36, 16, 66, 0.68) 55%, rgba(71, 33, 122, 0.78) 100%);
+  z-index: -1;
+}
+
+.Loader { position: fixed; inset: 0; background: #0F061D; z-index: 2000; display: flex; align-items: center; justify-content: center; }
+.Welcome-box { text-align: center; }
+.Welcome-text {
+  display: block; font-size: clamp(2.8rem, 7vw, 5rem); font-weight: 700; letter-spacing: 3px;
+  background: var(--accent-grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+}
+.Loader-bar { height: 4px; width: 100%; margin-top: 12px; border-radius: 2px; background: var(--accent-grad); transform-origin: left center; }
+
+/* Menú Superior */
+.Menu {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+  padding: 1.2rem 2.5rem;
+  background: rgba(15, 6, 29, 0.75);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(196, 181, 253, 0.12);
+}
+.Menu nav {
+  max-width: 1140px; margin: 0 auto;
+  display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;
+}
+.Menu a {
+  color: var(--muted-color); text-decoration: none; font-size: 0.82rem; font-weight: 600;
+  letter-spacing: 1px; text-transform: uppercase; transition: color 0.3s ease;
+}
+.Menu a:hover, .Menu a.selected { color: var(--text-color); border-bottom: 2px solid #A855F7; padding-bottom: 3px; }
+
+.UserNavArea { display: flex; align-items: center; gap: 10px; }
+
+.ClientAuthNavBtn {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(196, 181, 253, 0.35);
+  color: #FFFFFF;
+  padding: 6px 14px;
+  border-radius: 6px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+.ClientAuthNavBtn:hover { background: var(--accent-grad); border-color: transparent; }
+
+.LoggedUserBadge {
+  display: flex; align-items: center; gap: 8px;
+  background: rgba(168, 85, 247, 0.2); border: 1px solid rgba(168, 85, 247, 0.45);
+  padding: 4px 10px; border-radius: 6px; font-size: 0.78rem; color: #E9D5FF;
+}
+.LogoutMiniBtn {
+  background: rgba(239, 68, 68, 0.75); border: none; color: #fff;
+  padding: 2px 7px; border-radius: 4px; font-size: 0.7rem; cursor: pointer;
+}
+
+.AdminSecretLink { opacity: 0.25; font-size: 1.3rem !important; border: none !important; transition: opacity 0.3s; }
+.AdminSecretLink:hover { opacity: 1; }
+.AdminNavBtn {
+  background: rgba(168, 85, 247, 0.25); border: 1px solid rgba(168, 85, 247, 0.5) !important;
+  color: #E9D5FF !important; padding: 5px 12px; border-radius: 6px; font-size: 0.75rem !important;
+}
+
+.Container { max-width: 1040px; margin: 0 auto; padding: 0 2rem; }
+.Section { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; padding: 6rem 0; }
+.ViewTopPadding { justify-content: flex-start; padding-top: 7.5rem; }
+
+/* Botones de Inicio */
+.HeroActions { display: flex; gap: 1rem; margin-top: 2rem; flex-wrap: wrap; }
+.HeroPrimaryBtn {
+  background: var(--accent-grad); border: none; color: #fff; padding: 0.85rem 1.8rem;
+  border-radius: 8px; font-weight: 700; font-size: 0.9rem; cursor: pointer; transition: transform 0.2s;
+}
+.HeroPrimaryBtn:hover { transform: translateY(-2px); }
+.HeroSecondaryBtn {
+  background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(196, 181, 253, 0.35); color: #fff;
+  padding: 0.85rem 1.8rem; border-radius: 8px; font-weight: 600; font-size: 0.9rem; cursor: pointer;
+}
+.HeroSecondaryBtn:hover { background: rgba(168, 85, 247, 0.25); }
+
+.InfoCardsGrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.2rem; margin-bottom: 2rem; }
+.InfoFeatureCard { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(196, 181, 253, 0.15); padding: 1.4rem; border-radius: 10px; }
+.InfoFeatureCard h4 { margin-bottom: 0.5rem; color: #E9D5FF; }
+.InfoFeatureCard p { font-size: 0.9rem; color: var(--muted-color); }
+
+.gg { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+.gg-symbol { height: 14px; border-radius: 7px; background-color: var(--solid-shape); display: inline-block; }
+.gg-symbol--gradient { background: var(--accent-grad); }
+.gg-symbol--disc { width: 14px; border-radius: 50%; }
+.gg-symbol--rect.gg-symbol--3 { width: 54px; }
+.gg-symbol--rect.gg-symbol--5 { width: 98px; }
+
+.Title { margin: 1.5rem 0; }
+.Title h1 { font-size: clamp(2.2rem, 5.2vw, 3.8rem); font-weight: 700; text-shadow: 0 4px 20px rgba(10, 4, 20, 0.9); }
+.Title h2 {
+  font-size: clamp(1.7rem, 3.8vw, 2.8rem); font-weight: 700; background: var(--accent-grad);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+}
+.Hero-desc { margin-top: 1.2rem; max-width: 600px; color: #EDE9FE; text-shadow: 0 2px 12px rgba(10, 4, 20, 0.95); }
+
+h3 { font-size: 1.6rem; margin-bottom: 0.8rem; display: flex; align-items: center; gap: 12px; }
+.title-bar { width: 32px; height: 6px; border-radius: 3px; display: inline-block; }
+.Section-subtitle { color: var(--muted-color); margin-bottom: 2rem; }
+
+/* Tarjetas de Catálogo y Páginas */
+.Catalog-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 1.5rem; }
+.CatalogCard {
+  background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(196, 181, 253, 0.15);
+  border-radius: 12px; overflow: hidden; backdrop-filter: blur(6px); transition: transform 0.3s ease, border-color 0.3s ease;
+  display: flex; flex-direction: column;
+}
+.CatalogCard:hover { transform: translateY(-6px); border-color: #A855F7; }
+.CatalogCard-img {
+  height: 165px; background-size: cover; background-position: center; padding: 12px;
+  display: flex; justify-content: space-between; align-items: flex-start;
+}
+.Catalog-tag { background: rgba(15, 6, 29, 0.85); color: #E9D5FF; font-size: 0.72rem; font-weight: 600; padding: 4px 10px; border-radius: 20px; }
+.Price-tag { background: var(--accent-grad); color: #FFFFFF; font-size: 0.75rem; font-weight: 700; padding: 4px 10px; border-radius: 20px; }
+
+.CatalogCard-info { padding: 1.3rem; flex: 1; display: flex; flex-direction: column; justify-content: space-between; }
+.CatalogCard-info h4 { font-size: 1.15rem; margin-bottom: 0.4rem; }
+.CatalogCard-info p { font-size: 0.85rem; color: var(--muted-color); margin-bottom: 0.8rem; }
+
+.PlanFeatures { list-style: none; margin-bottom: 1.2rem; font-size: 0.82rem; color: #EDE9FE; }
+.PlanFeatures li { margin-bottom: 4px; }
+
+.CardActionsRow { display: flex; gap: 8px; flex-direction: column; }
+.VisitPageBtn {
+  display: block; text-align: center; text-decoration: none;
+  background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(196, 181, 253, 0.35);
+  color: #FFFFFF; padding: 0.6rem 1rem; border-radius: 6px; font-weight: 600; font-size: 0.85rem;
+}
+.VisitPageBtn:hover { background: rgba(168, 85, 247, 0.3); }
+
+.RequestServiceBtn {
+  width: 100%; background: var(--accent-grad); border: none; color: #FFFFFF;
+  padding: 0.7rem 1rem; border-radius: 6px; font-weight: 600; font-size: 0.88rem; cursor: pointer;
+}
+
+.VideosSection { margin-top: 4.5rem; }
+.Videos-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
+.VideoCard { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(196, 181, 253, 0.18); border-radius: 12px; overflow: hidden; }
+.VideoCard iframe, .VideoCard video { width: 100%; height: 200px; border: none; display: block; background: #000; }
+.VideoCard-title { padding: 0.9rem 1.1rem; font-size: 0.95rem; font-weight: 600; }
+
+.ContactBox { margin-top: 1rem; }
+.Contact-btn { background: var(--accent-grad); border: none; color: #FFF; padding: 0.8rem 1.5rem; font-weight: 600; border-radius: 6px; cursor: pointer; }
+.Contact-details {
+  margin-top: 1.2rem; background: rgba(255, 255, 255, 0.05); padding: 1.2rem; border-radius: 8px; border: 1px solid rgba(196, 181, 253, 0.2);
+}
+.Contact-details p { margin-bottom: 0.5rem; }
+.Contact-details a { color: #E879F9; text-decoration: none; font-weight: 600; }
+
+/* Botón Flotante de WhatsApp */
+.FloatingWhatsApp {
+  position: fixed; bottom: 24px; right: 24px; z-index: 90;
+  background: #25D366; color: #FFFFFF; text-decoration: none;
+  padding: 12px 20px; border-radius: 50px; font-weight: 700; font-size: 0.9rem;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.45);
+  transition: transform 0.25s ease, background 0.25s ease;
+}
+.FloatingWhatsApp:hover { transform: scale(1.06); background: #20BA5A; }
+
+.hidden { display: none !important; }
+
+/* Modales */
+.AdminModal {
+  position: fixed; inset: 0; background: rgba(10, 4, 20, 0.88); z-index: 1000;
+  display: flex; align-items: center; justify-content: center; backdrop-filter: blur(4px);
+}
+.AdminContent {
+  background: #1B0D33; border: 1px solid rgba(168, 85, 247, 0.35); padding: 1.8rem;
+  border-radius: 12px; width: 92%; max-width: 440px; max-height: 90vh; overflow-y: auto;
+}
+.AdminLarge { max-width: 560px; }
+.AdminHeader { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+
+.AuthTabsHeader { display: flex; gap: 8px; margin-bottom: 1.2rem; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 8px; }
+.AuthModeTab {
+  flex: 1; background: transparent; border: none; color: var(--muted-color); padding: 8px;
+  font-weight: 700; cursor: pointer; border-radius: 6px; font-size: 0.9rem;
+}
+.AuthModeTab.active { background: rgba(168, 85, 247, 0.25); color: #FFF; }
+
+.AdminStatsRow {
+  display: flex; justify-content: space-between; background: #100621; padding: 0.7rem 1rem; border-radius: 6px; font-size: 0.85rem; margin-bottom: 1rem;
+}
+.AdminSectionBox { margin-bottom: 1.2rem; padding-bottom: 1rem; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+.AdminSectionBox h4 { font-size: 0.9rem; color: #E9D5FF; margin-bottom: 0.6rem; }
+.AdminInlineForm { display: flex; gap: 8px; }
+.AdminInlineForm .AdminInput { margin-bottom: 0; }
+.Admin-sub { font-size: 0.85rem; color: var(--muted-color); margin-bottom: 0.5rem; }
+.AuthForm { display: flex; flex-direction: column; gap: 8px; }
+.AdminInput {
+  width: 100%; padding: 0.7rem; background: #100621; border: 1px solid rgba(168, 85, 247, 0.3);
+  color: #FFF; border-radius: 6px; margin-bottom: 0.5rem;
+}
+.AdminButtons { display: flex; gap: 10px; margin-top: 0.5rem; }
+.AdminBtnSave { background: var(--accent-grad); border: none; color: #FFF; padding: 0.65rem 1rem; border-radius: 6px; cursor: pointer; font-weight: 600; white-space: nowrap; }
+.AdminBtnClose { background: rgba(255,255,255,0.1); border: none; color: #FFF; padding: 0.5rem 0.9rem; border-radius: 6px; cursor: pointer; }
+
+.AdminUserListBox { background: #100621; padding: 0.8rem; border-radius: 6px; max-height: 150px; overflow-y: auto; }
+.AdminUserListBox h4 { font-size: 0.85rem; color: var(--muted-color); margin-bottom: 0.5rem; }
+.EmailsList { list-style: none; font-size: 0.8rem; color: #FFF; }
+.EmailsList li {
+  padding: 6px 0; border-bottom: 1px solid rgba(255,255,255,0.06); display: flex; justify-content: space-between; align-items: center;
+}
+.DeleteMiniBtn { background: #EF4444; border: none; color: #fff; padding: 2px 7px; border-radius: 4px; font-size: 0.7rem; cursor: pointer; }
+
+.Footer { padding: 2.5rem 2rem; border-top: 1px solid rgba(196, 181, 253, 0.15); max-width: 1040px; margin: 0 auto; }
+.Footer ul { list-style: none; display: flex; justify-content: space-between; color: var(--muted-color); font-size: 0.9rem; }
+
+@media (max-width: 768px) {
+  .Menu { padding: 1rem; }
+  .Menu nav { justify-content: center; gap: 0.8rem; }
+  .ViewTopPadding { padding-top: 9.5rem; }
+  .FloatingWhatsApp { bottom: 16px; right: 16px; padding: 10px 16px; font-size: 0.85rem; }
+}
